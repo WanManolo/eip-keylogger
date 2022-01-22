@@ -1,6 +1,6 @@
 #!/bin/python3.10
 
-from keyUtils import initKeylogger
+from keyUtils import initKeylogger, readLogs
 
 
 def startKeylogger():
@@ -20,12 +20,18 @@ def menu():
     """)
 
     while not(exitMenu):
-        selectedMenu = int(input("Select:"))
+        selectedMenu = int(input("Select menu option:"))
         if (selectedMenu == 1):
-            startKeylogger()
+            print("Keylogger started - Press ESC to stop")
+            try:
+                startKeylogger()
+            except:
+                print("Keylogger Stopped")
         elif(selectedMenu == 2):
-            print("Keylog.txt file content")
+            print("Keylog.txt file content:")
+            readLogs()
         elif(selectedMenu == 3):
+            print("Exit keylogger...")
             exitMenu = True
 
 
